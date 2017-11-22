@@ -1,0 +1,12 @@
+name: xwidgets
+channels:
+  - nodefaults
+  - QuantStack
+dependencies:
+  - xwidgets
+  - xtensor
+  - xtensor-io
+  - xeus-cling
+  - notebook
+  - widgetsnbextension >=3.0.0
+  - ipywidgets >=7.0  # Fixing conda conflict

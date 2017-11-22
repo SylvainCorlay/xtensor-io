@@ -2,6 +2,7 @@
 
 [![Travis](https://travis-ci.org/QuantStack/xtensor-io.svg?branch=master)](https://travis-ci.org/QuantStack/xtensor-io)
 [![ReadTheDocs](https://readthedocs.org/projects/xtensor-io/badge/?version=stable)](http://xtensor-io.readthedocs.io/en/stable/)
+[![Binder](https://img.shields.io/badge/launch-binder-brightgreen.svg)](https://beta.mybinder.org/v2/gh/QuantStack/xtensor-io/0.2.0-binder?filepath=notebooks/xtensor-io.ipynb)
 [![Join the Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/QuantStack/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Reading and writing image, sound and npz file formats to and from xtensor data structures.
@@ -48,24 +49,37 @@ sudo make install
 
 ## Usage
 
+Loading a png image into xarray with shape `WIDTH x HEIGHT x CHANNELS`
+
 ```cpp
-// loads png image into xarray with shape WIDTH x HEIGHT x CHANNELS
 auto arr = xt::load_image("test.png");
+```
 
-// write xarray out to JPEG image
+Writing a JPEG image from an xarray
+
+```cpp
 xt::dump_image("dumptest.jpg", arr + 5);
+```
 
-// load npz file containing multiple arrays
+Loading an `npz` file containing multiple arrays
+
+```cpp
 auto npy_map = xt::load_npz("test.npz");
 
 auto arr_0 = npy_map["arr_0"].cast<double>();
 auto arr_1 = npy_map["arr_1"].cast<unsigned long>();
+```
 
-// open a wav file
+Opening an audio file.
+
+```cpp
 auto audio = xt::load_audio("files/xtensor.wav");
-auto& arr = std::get<1>(audio); // audio contents (like scipy.io.wavfile results)
+auto& arr = std::get<1>(audio);  // audio contents (like scipy.io.wavfile results)
+```
 
-// save a sine wave sound
+Writing an autio file from an xtensor expression
+
+```cpp
 int freq = 2000;
 int sampling_freq = 44100;
 double duration = 1.0;
